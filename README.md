@@ -1,4 +1,11 @@
 # Deep Control
+
+## 整体参数解释
+
+- num_steps， 总体的训练次数
+- max_episode_steps,  一个回合的步数
+- 使用gym环境，首先要有env.reset(),然后再env.render()
+
 ## Simple PyTorch Implementations of Deep RL Algorithms for Continuous Control Research
 
 This repository contains re-implementations of Deep RL algorithms for continuous action spaces. Some highlights:

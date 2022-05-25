@@ -1,5 +1,6 @@
 import argparse
-
+import sys
+sys.path.append("/Users/macbook/Documents/VscodeProjects/deep_control")
 import deep_control as dc
 
 

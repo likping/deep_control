@@ -1,6 +1,8 @@
 import argparse
-
+import sys
+sys.path.append("/Users/macbook/Documents/VscodeProjects/deep_control")
 import deep_control as dc
+
 
 
 def train_gym_td3(args):

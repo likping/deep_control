@@ -7,6 +7,7 @@ from . import envs, utils
 
 def run_env(agent, env, episodes, max_steps, render=False, verbosity=1, discount=1.0):
     episode_return_history = []
+    env.reset()
     if render:
         env.render("rgb_array")
     for episode in range(episodes):
@@ -24,6 +25,7 @@ def run_env(agent, env, episodes, max_steps, render=False, verbosity=1, discount
         if verbosity:
             print(f"Episode {episode}:: {episode_return}")
         episode_return_history.append(episode_return)
+    env.close()
     return torch.tensor(episode_return_history)
 
 

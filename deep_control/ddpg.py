@@ -72,9 +72,9 @@ def ddpg(
     train_env,
     test_env,
     buffer,
-    num_steps=1_000_000,
+    num_steps=8000,
     transitions_per_step=1,
-    max_episode_steps=100_000,
+    max_episode_steps=800,
     batch_size=256,
     tau=0.005,
     actor_lr=1e-4,
@@ -84,10 +84,10 @@ def ddpg(
     sigma_final=0.1,
     sigma_anneal=100_000,
     theta=0.15,
-    eval_interval=5000,
+    eval_interval=1600,
     eval_episodes=10,
     warmup_steps=1000,
-    render=False,
+    render=True,
     actor_clip=None,
     critic_clip=None,
     name="ddpg_run",
@@ -208,6 +208,8 @@ def ddpg(
             utils.soft_update(target_agent.critic, agent.critic, tau)
 
         if step % eval_interval == 0 or step == num_steps - 1:
+            print("visualtion")
+            render=True
             mean_return = run.evaluate_agent(
                 agent, test_env, eval_episodes, max_episode_steps, render
             )
@@ -303,7 +305,7 @@ def learn(
 
 def add_args(parser):
     parser.add_argument(
-        "--num_steps", type=int, default=1000000, help="number of training steps"
+        "--num_steps", type=int, default=8000, help="number of training steps"
     )
     parser.add_argument(
         "--transitions_per_step",
@@ -314,7 +316,7 @@ def add_args(parser):
     parser.add_argument(
         "--max_episode_steps",
         type=int,
-        default=100000,
+        default=800,
         help="maximum steps per episode",
     )
     parser.add_argument(
@@ -365,7 +367,7 @@ def add_args(parser):
     parser.add_argument(
         "--eval_interval",
         type=int,
-        default=5000,
+        default=800,
         help="how often to test the agent without exploration (in steps)",
     )
     parser.add_argument(
