@@ -168,6 +168,7 @@ def ddpg(
             noisy_action = run.exploration_noise(action, random_process)
             next_state, reward, done, info = train_env.step(noisy_action)
             if infinite_bootstrap:
+
                 # allow infinite bootstrapping. Many envs terminate
                 # (done = True) after an arbitrary number of steps
                 # to let the agent reset and avoid getting stuck in
@@ -200,6 +201,7 @@ def ddpg(
                 critic_clip=critic_clip,
                 actor_clip=actor_clip,
             )
+
 
             # move target models towards the online models
             # CC algorithms typically use a moving average rather

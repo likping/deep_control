@@ -1,10 +1,12 @@
 # Deep Control
 
-## 整体参数解释
+## 整体设计要点
 
 - num_steps， 总体的训练次数
 - max_episode_steps,  一个回合的步数
 - 使用gym环境，首先要有env.reset(),然后再env.render()
+- 通过环境的env.step(action)能得到执行action后的state和reward，reward越大表示越接近我们的控制目标
+- 在进入训练之前有<span style="color:red">warmup_buffer</span>对经验回放数组采取uniform随机策略进行环境的探索产生初始的经验回放数组
 
 ## Simple PyTorch Implementations of Deep RL Algorithms for Continuous Control Research
 
